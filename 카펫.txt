@@ -1,0 +1,25 @@
+import java.util.*;
+// 둘레 == brown = 2x + 2y -4 => x+y = (brown +4)/2
+// 속넓이 == yellow = (x-2)(y-2)
+//yellow 는 1이상 => y >= 3
+// 가로 >= 세로
+class Solution {
+    public int[] solution(int brown, int yellow) {
+        int[] answer = new int[2];
+        int sum = (brown +4)/2;
+        int x=0,y=0;
+        for(y=3 ; y<sum ; y++){
+            x = sum -y;
+            if(yellow == (x-2)*(y-2)){
+                if(x >= y){
+                answer[0] = x;
+                answer[1] = y;
+                break;
+                }
+            }
+                
+        }        
+        
+        return answer;
+    }
+}
