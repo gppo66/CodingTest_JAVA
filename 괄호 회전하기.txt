@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        Stack<Character> st = new Stack<>();
+        for(int x = 0 ; x < s.length()-1 ; x++){
+            if(s.length() %2 == 1) return answer = 0;
+            if(x != 0){
+             s = s.substring(1,s.length()) + s.charAt(0);   
+            }
+            st.clear();
+            for(int j = 0 ; j< s.length(); j++){
+                char w = s.charAt(j);
+                if(st.isEmpty()){
+                    st.push(w);
+                    continue;
+                }
+                
+                if(w == ')' && st.peek().equals('(')){
+                    st.pop();
+                }else if(w ==']' && st.peek().equals('[')){
+                    st.pop();
+                }else if(w == '}' && st.peek().equals('{')){
+                    st.pop();
+                }else{
+                    st.push(w);
+                }
+            }
+            if(st.isEmpty()) answer++;
+            
+        }
+        
+        return answer;
+    }
+}
