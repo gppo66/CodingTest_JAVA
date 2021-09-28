@@ -1,0 +1,15 @@
+import java.util.*;
+
+ // w * h - (w + h - 최대공약수)
+class Solution {
+    public long solution(int w, int h) {
+        long answer = 1;
+        long gcd = gcd(w,h);
+        answer = (long)w * (long)h - ((long)w + (long)h - gcd);
+        return answer;
+    }
+    public long gcd(int w, int h){
+        if(w==0) return h;
+        return gcd(h%w,w);
+    }
+}
