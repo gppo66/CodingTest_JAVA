@@ -1,0 +1,18 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        String str = "";
+        String rts = "";
+        while(n > 0){
+            str = (n % 3) + str;
+            n /= 3;
+        }
+        for(int i = 0 ; i < str.length(); i++){
+            int index = str.length()-1;
+            rts =  rts + str.charAt(index-i) ;
+            //System.out.println("str : " + str + " rts : " +rts);
+        }
+        answer = Integer.parseInt(rts,3);
+        return answer;
+    }
+}
