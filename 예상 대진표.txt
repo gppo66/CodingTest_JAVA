@@ -1,0 +1,29 @@
+import java.util.*;
+
+// (현재 자신의 번호 + 1) / 2가 다음 라운드에서의 번호.
+
+class Solution
+{
+    public int solution(int n, int a, int b)
+    {
+        int answer = 0;
+        int big = 0;
+        int small = 0;
+        
+        if(a > b){
+            big = a;
+            small = b;
+        }else{
+            big = b;
+            small = a;
+        }
+       
+        while(big != small){
+            answer++;
+            big = (big +1)/2;
+            small = (small+1)/2;
+            
+        }
+        return answer;
+    }
+}
