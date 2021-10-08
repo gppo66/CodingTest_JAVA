@@ -1,0 +1,24 @@
+import java.util.*;
+class Solution {
+    public String[] solution(String[] record) {
+        
+        String[] answer = {};
+        HashMap<String,String> hm = new HashMap<>();
+        List<String> log = new ArrayList<>();
+        String[] msg;
+        
+        for(int i = 0 ; i < record.length ; i++){
+            msg = record[i].split(" ");
+            if(msg.length > 2) hm.put(msg[1],msg[2]);
+        }
+        for(int i = 0 ; i < record.length ; i++){
+            msg = record[i].split(" ");
+            if(msg[0].charAt(0) == 'E') log.add(hm.get(msg[1]) + "님이 들어왔습니다.");
+            else if(msg[0].charAt(0) == 'L') log.add(hm.get(msg[1]) + "님이 나갔습니다.");
+            else continue;
+        }
+        answer = new String[log.size()];
+        log.toArray(answer);
+        return answer;
+    }
+}
