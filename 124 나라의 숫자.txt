@@ -1,0 +1,19 @@
+class Solution {
+    public String solution(int n) {
+        String answer = "";
+        while(n > 0) {
+            int ntf = n%3;
+            n /= 3;
+            if(ntf == 0){
+                answer = "4" + answer;
+                n--;   
+            }else if(ntf == 1){
+                answer = "1" + answer;
+            }else{
+                answer = "2" + answer;
+            }
+            
+        }
+        return answer;
+    }
+}
