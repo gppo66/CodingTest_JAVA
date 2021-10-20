@@ -1,29 +1,64 @@
 package maxnumber;
 import java.util.*;
+
 public class Main {
+ 
+	public static int MAX = Integer.MIN_VALUE;	// 최댓값 
+	public static int MIN = Integer.MAX_VALUE;	// 최솟값 
+	public static int[] operator = new int[4];	// 연산자 개수 
+	public static int[] number;					// 숫자 
+	public static int N;						// 숫자 개수 
+ 
 	public static void main(String[] args) {
-		 //input
-        Scanner scanner = new Scanner(System.in);
-        int m = scanner.nextInt();
-        int n = scanner.nextInt();
-        int sum = 0;
-        int min = 0;
-        
-        for(int i = m ; i <= n ; i++) {
-        	for(int j = 2 ; j <= i ; j++) {
-        		if(j == i) {
-        			sum += i;
-        			if(min == 0) min = i; 
-        		}
-        		if(i % j == 0) break;
-        	}
-        }
-        if(sum == 0) {
-            System.out.println(sum-1);        	
-        }
-        else {
-            System.out.println(sum);        	
-        	System.out.println(min);
-        }
+ 
+		Scanner scanner = new Scanner(System.in);
+ 
+		N = scanner.nextInt();
+		number = new int[N];
+ 
+		// 숫자 입력
+		for (int i = 0; i < N; i++) {
+			number[i] = scanner.nextInt();
+		}
+ 
+		// 연산자 입력
+		for (int i = 0; i < 4; i++) {
+			operator[i] = scanner.nextInt();
+		}
+ 
+		dfs(number[0], 1);
+ 
+		System.out.println(MAX);
+		System.out.println(MIN);
+ 
 	}
+ 
+	public static void dfs(int num, int idx) {
+		if (idx == N) {
+			MAX = Math.max(MAX, num);
+			MIN = Math.min(MIN, num);
+			return;
+		}
+ 
+		for (int i = 0; i < 4; i++) {
+			// 연산자 개수가 1개 이상인 경우
+			if (operator[i] > 0) {
+ 
+				// 해당 연산자를 1 감소시킨다.
+				operator[i]--;
+ 
+				switch (i) {
+ 
+				case 0:	dfs(num + number[idx], idx + 1);	break;
+				case 1:	dfs(num - number[idx], idx + 1);	break;
+				case 2:	dfs(num * number[idx], idx + 1);	break;
+				case 3:	dfs(num / number[idx], idx + 1);	break;
+ 
+				}
+				// 재귀호출이 종료되면 다시 해당 연산자 개수를 복구한다.
+				operator[i]++;
+			}
+		}
+	}
+ 
 }
