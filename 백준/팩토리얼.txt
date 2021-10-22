@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+ 
+	
+	
+	public static void main(String[] args) {
+ 
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int answer = facto(n);
+		if(n == 0) {
+			System.out.println(1);
+		}else
+		System.out.println(answer);
+	}
+	public static int facto(int n) {
+		if(n <= 1) {
+			return n;
+		}else {
+			return n * facto(n-1);
+		}
+		
+	}
+}
