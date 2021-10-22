@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main {
+ 
+	
+	
+	public static void main(String[] args) {
+ 
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		scanner.nextLine();
+		int rate = 1;
+		String ox;
+		int[] score = new int[n];
+		for(int i = 0 ; i < n ; i++) {
+			ox = scanner.nextLine();
+			rate = 1;
+			for(int j = 0 ; j < ox.length() ; j++) {
+				if(ox.charAt(j) == 'O') {
+					score[i] += rate;
+					rate++;
+				}else {
+					rate = 1;
+				}
+			}
+			
+		}
+		for(int i = 0 ; i < score.length ; i++) {
+			System.out.println(score[i]);
+		}
+		
+		
+	}
+}
