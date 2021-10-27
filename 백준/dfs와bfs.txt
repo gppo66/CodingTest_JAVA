@@ -1,6 +1,3 @@
-package maxnumber;
-
-
 import java.util.*;
 
 public class Main {
@@ -9,15 +6,16 @@ public class Main {
 	  static boolean[] checked;
 	  static int n;
 	  static int m;
-	  static int count=0;
+	  static int start;
 	  
 	  public static void main(String[] args){
 	  Scanner sc = new Scanner(System.in);
 	  n = sc.nextInt();
 	  m = sc.nextInt();
+	  start = sc.nextInt();
 	  
-	  check = new int[n+1][n+1];
-	  checked = new boolean[n+1];
+	  check = new int[1001][1001];
+	  checked = new boolean[1001];
 	  
 	  for(int i = 0; i < m; i++) {
 	    int x = sc.nextInt();
@@ -26,15 +24,27 @@ public class Main {
 	    check[x][y] = check[y][x] = 1;
 	  }
 	  
-	  bfs(1);
-	  System.out.println(count);
+	  dfs(start);
+	  System.out.println();
+	  checked = new boolean[1001];
+	  bfs();
 	}
 	
-	
-	public static void bfs(int start) {
-		Queue<Integer> queue = new LinkedList<>();
+	public static void dfs(int i) {
+		checked[i] = true;
+		System.out.print(i + " ");
+		
+		for(int j = 1 ; j <= n ; j++) {
+			if(check[i][j] == 1 && checked[j] == false)
+				dfs(j);
+		}
+		
+	}
+	public static void bfs() {
+		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.offer(start);
 		checked[start] = true;
+		System.out.print(start + " ");
 		
 		while(!queue.isEmpty()) {
 			int temp = queue.poll();
@@ -43,7 +53,7 @@ public class Main {
 				if(check[temp][i] == 1 && checked[i] == false) {
 					queue.offer(i);
 					checked[i] = true;
-					count++;
+					System.out.print(i + " ");
 				}
 			}
 		}
